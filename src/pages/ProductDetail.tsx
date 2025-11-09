@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ShoppingCart } from "lucide-react";
-import { fetchProductByHandle } from "@/lib/shopify";
-import { useCartStore } from "@/stores/cartStore";
+import { fetchProductByHandle } from "@/lib/mockData";
+import { useCartStore, Product } from "@/stores/cartStore";
 import { toast } from "sonner";
 import { CartDrawer } from "@/components/CartDrawer";
 
 export default function ProductDetail() {
   const { handle } = useParams<{ handle: string }>();
-  const [product, setProduct] = useState<any>(null);
+  const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
   const [selectedVariant, setSelectedVariant] = useState<any>(null);
   const addItem = useCartStore(state => state.addItem);
@@ -25,8 +25,8 @@ export default function ProductDetail() {
       setLoading(true);
       const data = await fetchProductByHandle(handle!);
       setProduct(data);
-      if (data?.variants?.edges?.[0]) {
-        setSelectedVariant(data.variants.edges[0].node);
+      if (data?.variants?.[0]) {
+        setSelectedVariant(data.variants[0]);
       }
     } catch (error) {
       console.error('Error loading product:', error);
@@ -40,7 +40,7 @@ export default function ProductDetail() {
     if (!product || !selectedVariant) return;
 
     const cartItem = {
-      product: { node: product },
+      product: product,
       variantId: selectedVariant.id,
       variantTitle: selectedVariant.title,
       price: selectedVariant.price,
@@ -97,9 +97,9 @@ export default function ProductDetail() {
       <main className="container mx-auto px-4 py-8">
         <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
           <div className="aspect-square bg-secondary/30 rounded-2xl overflow-hidden shadow-lg">
-            {product.images?.edges?.[0]?.node ? (
+            {product.images?.[0] ? (
               <img
-                src={product.images.edges[0].node.url}
+                src={product.images[0].url}
                 alt={product.title}
                 className="w-full h-full object-cover"
               />
@@ -114,8 +114,8 @@ export default function ProductDetail() {
             <div>
               <h1 className="text-4xl font-bold mb-2">{product.title}</h1>
               <p className="text-3xl font-semibold text-primary">
-                {product.priceRange.minVariantPrice.currencyCode}{' '}
-                {parseFloat(product.priceRange.minVariantPrice.amount).toFixed(2)}
+                {product.price.currencyCode}{' '}
+                {parseFloat(product.price.amount).toFixed(2)}
               </p>
             </div>
 
@@ -133,9 +133,9 @@ export default function ProductDetail() {
                     <label className="text-sm font-medium mb-2 block">{option.name}</label>
                     <div className="flex gap-2 flex-wrap">
                       {option.values.map((value: string) => {
-                        const variant = product.variants.edges.find((v: any) =>
-                          v.node.selectedOptions.some((o: any) => o.name === option.name && o.value === value)
-                        )?.node;
+                        const variant = product.variants.find((v: any) =>
+                          v.selectedOptions.some((o: any) => o.name === option.name && o.value === value)
+                        );
                         
                         const isSelected = selectedVariant?.selectedOptions.some(
                           (o: any) => o.name === option.name && o.value === value
