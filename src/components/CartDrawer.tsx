@@ -86,17 +86,17 @@ export const CartDrawer = () => {
                   {items.map((item) => (
                     <div key={item.variantId} className="flex gap-4 p-3 rounded-xl bg-secondary/10 hover:bg-secondary/20 transition-colors">
                       <div className="w-20 h-20 bg-background rounded-lg overflow-hidden flex-shrink-0 shadow-subtle">
-                        {item.product.node.images?.edges?.[0]?.node && (
+                        {item.product.images?.[0] && (
                           <img
-                            src={item.product.node.images.edges[0].node.url}
-                            alt={item.product.node.title}
+                            src={item.product.images[0].url}
+                            alt={item.product.title}
                             className="w-full h-full object-cover"
                           />
                         )}
                       </div>
                       
                       <div className="flex-1 min-w-0">
-                        <h4 className="font-medium truncate">{item.product.node.title}</h4>
+                        <h4 className="font-medium truncate">{item.product.title}</h4>
                         <p className="text-sm text-muted-foreground">
                           {item.selectedOptions.map(option => option.value).join(' • ')}
                         </p>
@@ -179,7 +179,7 @@ export const CartDrawer = () => {
                   )}
                 </Button>
                 <p className="text-xs text-center text-muted-foreground">
-                  Secure checkout powered by Shopify
+                  Secure checkout
                 </p>
               </div>
             </>
