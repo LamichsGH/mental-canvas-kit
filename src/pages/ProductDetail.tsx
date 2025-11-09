@@ -2,14 +2,15 @@ import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ShoppingCart } from "lucide-react";
-import { fetchProductByHandle } from "@/lib/shopify";
+import { fetchProductByHandle } from "@/lib/mockData";
+import { Product } from "@/stores/cartStore";
 import { useCartStore } from "@/stores/cartStore";
 import { toast } from "sonner";
 import { CartDrawer } from "@/components/CartDrawer";
 
 export default function ProductDetail() {
   const { handle } = useParams<{ handle: string }>();
-  const [product, setProduct] = useState<any>(null);
+  const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
   const [selectedVariant, setSelectedVariant] = useState<any>(null);
   const addItem = useCartStore(state => state.addItem);
@@ -25,8 +26,8 @@ export default function ProductDetail() {
       setLoading(true);
       const data = await fetchProductByHandle(handle!);
       setProduct(data);
-      if (data?.variants?.edges?.[0]) {
-        setSelectedVariant(data.variants.edges[0].node);
+      if (data?.variants?.[0]) {
+        setSelectedVariant(data.variants[0]);
       }
     } catch (error) {
       console.error('Error loading product:', error);

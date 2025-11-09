@@ -45,8 +45,8 @@ export default function Index() {
     if (!searchQuery.trim()) return true;
     
     const query = searchQuery.toLowerCase();
-    const title = product.node.title.toLowerCase();
-    const description = product.node.description?.toLowerCase() || "";
+    const title = product.title.toLowerCase();
+    const description = product.description?.toLowerCase() || "";
     
     return title.includes(query) || description.includes(query);
   });
