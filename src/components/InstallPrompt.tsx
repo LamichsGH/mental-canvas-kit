@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Download, X } from "lucide-react";
+import { getSafeStorage } from "@/lib/safeStorage";
 
 interface BeforeInstallPromptEvent extends Event {
   prompt: () => Promise<void>;
@@ -21,7 +22,8 @@ export const InstallPrompt = () => {
     }
 
     // Check if user previously dismissed
-    const dismissed = localStorage.getItem('pwa-install-dismissed');
+    const storage = getSafeStorage();
+    const dismissed = storage.getItem('pwa-install-dismissed');
     if (dismissed) {
       return;
     }
@@ -56,7 +58,8 @@ export const InstallPrompt = () => {
 
   const handleDismiss = () => {
     setShowPrompt(false);
-    localStorage.setItem('pwa-install-dismissed', 'true');
+    const storage = getSafeStorage();
+    storage.setItem('pwa-install-dismissed', 'true');
   };
 
   if (isInstalled || !showPrompt || !deferredPrompt) {
