@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { fetchProducts } from "@/lib/mockData";
 import { Product } from "@/stores/cartStore";
 import { toast } from "sonner";
@@ -17,6 +18,7 @@ import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 export default function Index() {
+  const navigate = useNavigate();
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchOpen, setSearchOpen] = useState(false);
@@ -138,7 +140,7 @@ export default function Index() {
                       variant="ghost"
                       className="justify-start text-lg font-normal hover:text-primary transition-colors"
                       onClick={() => {
-                        window.location.href = '/ingredients';
+                        navigate('/ingredients');
                         setMobileMenuOpen(false);
                       }}
                     >
@@ -148,7 +150,7 @@ export default function Index() {
                       variant="ghost"
                       className="justify-start text-lg font-normal hover:text-primary transition-colors"
                       onClick={() => {
-                        window.location.href = '/contact';
+                        navigate('/contact');
                         setMobileMenuOpen(false);
                       }}
                     >
@@ -174,14 +176,14 @@ export default function Index() {
             <Button 
               variant="ghost"
               className="text-base font-normal hover:text-primary transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-foreground after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300"
-              onClick={() => window.location.href = '/ingredients'}
+              onClick={() => navigate('/ingredients')}
             >
               Ingredients
             </Button>
             <Button 
               variant="ghost"
               className="text-base font-normal hover:text-primary transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-foreground after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300"
-              onClick={() => window.location.href = '/contact'}
+              onClick={() => navigate('/contact')}
             >
               Contact
             </Button>
@@ -258,7 +260,7 @@ export default function Index() {
                   <Button 
                     variant="ghost" 
                     className="h-auto p-0 text-muted-foreground hover:text-primary"
-                    onClick={() => window.location.href = '/ingredients'}
+                    onClick={() => navigate('/ingredients')}
                   >
                     Ingredients
                   </Button>
@@ -267,7 +269,7 @@ export default function Index() {
                   <Button 
                     variant="ghost" 
                     className="h-auto p-0 text-muted-foreground hover:text-primary"
-                    onClick={() => window.location.href = '/contact'}
+                    onClick={() => navigate('/contact')}
                   >
                     Contact
                   </Button>
