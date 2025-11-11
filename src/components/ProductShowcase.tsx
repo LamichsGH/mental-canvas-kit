@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
+import cocoaPreparation from "@/assets/cocoa-preparation.png";
 
 export const ProductShowcase = () => {
   const navigate = useNavigate();
@@ -21,9 +22,13 @@ export const ProductShowcase = () => {
 
             {/* Right Column - Image + CTA (40% width = 2/5) */}
             <div className="md:col-span-2 p-8 md:p-12 flex flex-col items-center justify-center bg-secondary/5">
-              {/* Product Image Placeholder */}
-              <div className="w-full aspect-square max-w-xs bg-gradient-to-br from-primary/30 to-primary/10 rounded-xl shadow-lg mb-6 flex items-center justify-center">
-                <div className="text-8xl opacity-50">☕</div>
+              {/* Product Image */}
+              <div className="w-full aspect-square max-w-xs rounded-xl shadow-lg mb-6 overflow-hidden">
+                <img 
+                  src={cocoaPreparation} 
+                  alt="Hand measuring cocoa powder into a cup" 
+                  className="w-full h-full object-cover"
+                />
               </div>
 
               {/* Shop Now CTA */}
