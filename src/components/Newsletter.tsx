@@ -78,10 +78,10 @@ export const Newsletter = () => {
                   <div className="text-center mb-8">
                     <Mail className="h-12 w-12 mx-auto mb-4 text-primary" strokeWidth={1.5} />
                     <h2 className="text-3xl md:text-4xl mb-4">
-                      More Rituals, Coming Soon
+                      Join Our Mailing List
                     </h2>
                     <p className="text-lg text-muted-foreground">
-                      We're crafting new blends to meet different moments — each designed to restore calm, focus, and recovery
+                      Get early access to new releases
                     </p>
                   </div>
 
