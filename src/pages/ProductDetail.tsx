@@ -31,8 +31,8 @@ export default function ProductDetail() {
         handle: "recovery-cocoa",
         description: "FuelHaus blends real cocoa with electrolytes and magnesium for hydration and calm",
         images: [],
-        price: { amount: "21.99", currencyCode: "£" },
-        variants: [{ id: "default", title: "Default", availableForSale: true, price: { amount: "21.99", currencyCode: "£" }, selectedOptions: [] }],
+        price: { amount: "21.99", currencyCode: "GBP" },
+        variants: [{ id: "default", title: "Default", availableForSale: true, price: { amount: "21.99", currencyCode: "GBP" }, selectedOptions: [] }],
         options: []
       };
       setProduct(defaultProduct);
@@ -60,8 +60,8 @@ export default function ProductDetail() {
           handle: handle!,
           description: "FuelHaus blends real cocoa with electrolytes and magnesium for hydration and calm",
           images: [],
-          price: { amount: "21.99", currencyCode: "£" },
-          variants: [{ id: "default", title: "Default", availableForSale: true, price: { amount: "21.99", currencyCode: "£" }, selectedOptions: [] }],
+          price: { amount: "21.99", currencyCode: "GBP" },
+          variants: [{ id: "default", title: "Default", availableForSale: true, price: { amount: "21.99", currencyCode: "GBP" }, selectedOptions: [] }],
           options: []
         };
         setProduct(defaultProduct);
@@ -76,8 +76,8 @@ export default function ProductDetail() {
         handle: handle!,
         description: "FuelHaus blends real cocoa with electrolytes and magnesium for hydration and calm",
         images: [],
-        price: { amount: "21.99", currencyCode: "£" },
-        variants: [{ id: "default", title: "Default", availableForSale: true, price: { amount: "21.99", currencyCode: "£" }, selectedOptions: [] }],
+        price: { amount: "21.99", currencyCode: "GBP" },
+        variants: [{ id: "default", title: "Default", availableForSale: true, price: { amount: "21.99", currencyCode: "GBP" }, selectedOptions: [] }],
         options: []
       };
       setProduct(defaultProduct);
@@ -174,8 +174,7 @@ export default function ProductDetail() {
             {/* Pricing */}
             <div className="flex items-center gap-3">
               <span className="text-3xl font-semibold text-primary">
-                {product.price?.currencyCode === 'GBP' ? '£' : product.price?.currencyCode === 'USD' ? '$' : product.price?.currencyCode} 
-                {parseFloat(product.price?.amount || "21.99").toFixed(2)}
+                £{parseFloat(product.price?.amount || "21.99").toFixed(2)}
               </span>
               <span className="text-xl text-muted-foreground line-through">£24.99</span>
             </div>

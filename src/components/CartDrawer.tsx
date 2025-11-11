@@ -103,7 +103,7 @@ export const CartDrawer = () => {
                           {item.selectedOptions.map(option => option.value).join(' • ')}
                         </p>
                         <p className="font-semibold">
-                          {item.price.currencyCode} {parseFloat(item.price.amount).toFixed(2)}
+                          £{parseFloat(item.price.amount).toFixed(2)}
                         </p>
                       </div>
                       
@@ -147,7 +147,7 @@ export const CartDrawer = () => {
                   <div className="flex justify-between text-sm">
                     <span className="text-muted-foreground">Subtotal</span>
                     <span className="font-medium">
-                      {items[0]?.price.currencyCode || 'USD'} {totalPrice.toFixed(2)}
+                      £{totalPrice.toFixed(2)}
                     </span>
                   </div>
                   <div className="flex justify-between text-sm">
@@ -158,7 +158,7 @@ export const CartDrawer = () => {
                 <div className="flex justify-between items-center pt-2 border-t">
                   <span className="text-lg font-medium">Total</span>
                   <span className="text-2xl font-medium text-primary">
-                    {items[0]?.price.currencyCode || 'USD'} {totalPrice.toFixed(2)}
+                    £{totalPrice.toFixed(2)}
                   </span>
                 </div>
                 
