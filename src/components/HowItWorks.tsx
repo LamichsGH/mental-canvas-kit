@@ -1,19 +1,28 @@
+import step1 from "@/assets/how-it-works-1.png";
+import step2 from "@/assets/how-it-works-2.png";
+import step3 from "@/assets/how-it-works-3.png";
+import step4 from "@/assets/how-it-works-4.png";
+
 const steps = [
   {
     title: "Step 1",
-    description: "Add 40g of Recovery Cocoa to your favorite mug."
+    description: "Add 40g of Recovery Cocoa to your favorite mug.",
+    image: step1
   },
   {
     title: "Step 2",
-    description: "Pour in 250ml of hot water — milk optional, or use your favorite plant-based alternative"
+    description: "Pour in 250ml of hot water — milk optional, or use your favorite plant-based alternative",
+    image: step2
   },
   {
     title: "Step 3",
-    description: "Stir well — it mixes smoothly with a spoon, but a frother makes it velvet-smooth."
+    description: "Stir well — it mixes smoothly with a spoon, but a frother makes it velvet-smooth.",
+    image: step3
   },
   {
     title: "Step 4",
-    description: "Take a moment, sip slowly, and enjoy your calm."
+    description: "Take a moment, sip slowly, and enjoy your calm.",
+    image: step4
   }
 ];
 
@@ -32,7 +41,13 @@ export const HowItWorks = () => {
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
               {steps.map((step, index) => (
                 <div key={index} className="text-center">
-                  <div className="w-36 h-36 bg-secondary/20 rounded-lg mx-auto mb-4 flex items-center justify-center"><span className="text-7xl">☕</span></div>
+                  <div className="w-full aspect-square rounded-lg mx-auto mb-4 overflow-hidden">
+                    <img 
+                      src={step.image} 
+                      alt={step.title}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
                   <h3 className="text-lg font-semibold mb-3">{step.title}</h3>
                   <p className="text-muted-foreground leading-relaxed">{step.description}</p>
                 </div>
