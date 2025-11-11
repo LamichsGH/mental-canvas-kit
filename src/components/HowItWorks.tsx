@@ -32,7 +32,7 @@ export const HowItWorks = () => {
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
               {steps.map((step, index) => (
                 <div key={index} className="text-center">
-                  <div className="w-36 h-36 bg-secondary rounded-lg mx-auto mb-4"></div>
+                  <div className="w-36 h-36 bg-secondary/20 rounded-lg mx-auto mb-4 flex items-center justify-center"><span className="text-7xl">☕</span></div>
                   <h3 className="text-lg font-semibold mb-3">{step.title}</h3>
                   <p className="text-muted-foreground leading-relaxed">{step.description}</p>
                 </div>
