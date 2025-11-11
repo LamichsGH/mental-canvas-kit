@@ -88,15 +88,15 @@ export default function ProductDetail() {
   };
 
   const handleAddToCart = () => {
-    if (!product) return;
+    if (!product || !selectedVariant) return;
 
     const cartItem = {
-      product: { ...product, title: "Recovery Cocoa" },
-      variantId: selectedVariant?.id || "default",
+      product: product,
+      variantId: selectedVariant.id,
       variantTitle: `${quantity} Bag${quantity > 1 ? 's' : ''}`,
-      price: { amount: "21.99", currencyCode: "£" },
+      price: selectedVariant.price || product.price,
       quantity: quantity,
-      selectedOptions: []
+      selectedOptions: selectedVariant.selectedOptions || []
     };
 
     addItem(cartItem);
@@ -169,11 +169,14 @@ export default function ProductDetail() {
             </div>
 
             {/* Product Title */}
-            <h1 className="text-4xl font-bold">Recovery Cocoa</h1>
+            <h1 className="text-4xl font-bold">{product.title}</h1>
 
             {/* Pricing */}
             <div className="flex items-center gap-3">
-              <span className="text-3xl font-semibold text-primary">£21.99</span>
+              <span className="text-3xl font-semibold text-primary">
+                {product.price?.currencyCode === 'GBP' ? '£' : product.price?.currencyCode === 'USD' ? '$' : product.price?.currencyCode} 
+                {parseFloat(product.price?.amount || "21.99").toFixed(2)}
+              </span>
               <span className="text-xl text-muted-foreground line-through">£24.99</span>
             </div>
 
