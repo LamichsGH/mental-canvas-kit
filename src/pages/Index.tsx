@@ -59,9 +59,9 @@ export default function Index() {
     <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container mx-auto px-6 py-4">
+        <div className="container mx-auto px-4 py-2 md:py-3">
           {/* Top Row: Search Icon - Logo - User/Cart Icons */}
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center justify-between mb-2 md:mb-1">
             {/* Left: Search Icon */}
             <div className="flex items-center gap-2">
               {searchOpen ? (
@@ -108,7 +108,7 @@ export default function Index() {
               <img 
                 src="/logo.png?v=4" 
                 alt="Fuel Haus" 
-                className="h-28 md:h-32 w-auto object-contain"
+                className="h-16 md:h-20 w-auto object-contain"
               />
             </div>
 
@@ -167,7 +167,7 @@ export default function Index() {
           </div>
 
           {/* Bottom Row: Navigation Links - Centered, Hidden on Mobile */}
-          <nav className="hidden md:flex items-center justify-center gap-8 md:gap-12">
+          <nav className="hidden md:flex items-center justify-center gap-6 md:gap-8">
             <Button 
               variant="ghost" 
               className="text-base font-normal hover:text-primary transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-foreground after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300"
