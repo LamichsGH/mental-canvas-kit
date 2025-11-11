@@ -11,6 +11,7 @@ import { SocialProof } from "@/components/SocialProof";
 import { Newsletter } from "@/components/Newsletter";
 import { BrandStory } from "@/components/BrandStory";
 import { HowItWorks } from "@/components/HowItWorks";
+import { WhatsInside } from "@/components/WhatsInside";
 import { FAQ } from "@/components/FAQ";
 import { SeasonalDrinks } from "@/components/SeasonalDrinks";
 import { Button } from "@/components/ui/button";
@@ -199,8 +200,9 @@ export default function Index() {
         <SocialProof />
         <SeasonalDrinks />
         <BrandStory />
-        <HowItWorks />
-        <FAQ />
+          <HowItWorks />
+          <WhatsInside />
+          <FAQ />
         <Newsletter />
       </main>
 
