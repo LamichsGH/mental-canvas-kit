@@ -198,10 +198,10 @@ export default function Index() {
         <ValueProps />
         <SocialProof />
         <SeasonalDrinks />
+        <BrandStory />
         <HowItWorks />
         <FAQ />
         <Newsletter />
-        <BrandStory />
       </main>
 
       {/* Footer */}
