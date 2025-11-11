@@ -1,28 +1,17 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { Coffee, Clock, Heart, Sparkles } from "lucide-react";
-
 const steps = [
   {
-    icon: Coffee,
-    number: "01",
     title: "Step 1",
     description: "Add 40g of Recovery Cocoa to your favorite mug."
   },
   {
-    icon: Clock,
-    number: "02",
     title: "Step 2",
     description: "Pour in 250ml of hot water — milk optional, or use your favorite plant-based alternative"
   },
   {
-    icon: Heart,
-    number: "03",
     title: "Step 3",
     description: "Stir well — it mixes smoothly with a spoon, but a frother makes it velvet-smooth."
   },
   {
-    icon: Sparkles,
-    number: "04",
     title: "Step 4",
     description: "Take a moment, sip slowly, and enjoy your calm."
   }
@@ -32,58 +21,24 @@ export const HowItWorks = () => {
   return (
     <section className="py-20 bg-secondary/10">
       <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-16 animate-fade-in">
-            <h2 className="text-4xl md:text-5xl mb-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl">
               Your Moment, Made Simple
             </h2>
-            <p className="text-lg text-muted-foreground">
-              Four simple steps to restoration and calm
-            </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            {steps.map((step, index) => (
-              <Card 
-                key={index}
-                className="border-0 shadow-subtle hover:shadow-xl transition-all duration-300 animate-fade-in rounded-xl"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <CardContent className="p-8">
-                  <div className="flex items-start gap-4 mb-4">
-                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                      <step.icon className="h-6 w-6 text-primary" strokeWidth={1.5} />
-                    </div>
-                    <div>
-                      <span className="text-4xl font-light text-primary/30">{step.number}</span>
-                    </div>
-                  </div>
-                  <h3 className="text-xl mb-3">{step.title}</h3>
+          <div className="bg-card rounded-xl p-8 md:p-12">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+              {steps.map((step, index) => (
+                <div key={index} className="text-center">
+                  <div className="w-36 h-36 bg-secondary rounded-lg mx-auto mb-4"></div>
+                  <h3 className="text-lg font-semibold mb-3">{step.title}</h3>
                   <p className="text-muted-foreground leading-relaxed">{step.description}</p>
-                </CardContent>
-              </Card>
-            ))}
+                </div>
+              ))}
+            </div>
           </div>
-
-          <Card className="mt-12 border-0 bg-gradient-to-br from-accent/5 to-primary/5 shadow-subtle rounded-xl">
-            <CardContent className="p-8 md:p-12 text-center">
-              <h3 className="text-2xl mb-4">Pro Tips</h3>
-              <div className="grid md:grid-cols-3 gap-6 text-left">
-                <div>
-                  <p className="font-medium mb-2">Best Timing</p>
-                  <p className="text-sm text-muted-foreground">30-60 minutes after exercise for optimal recovery</p>
-                </div>
-                <div>
-                  <p className="font-medium mb-2">Temperature</p>
-                  <p className="text-sm text-muted-foreground">Heat liquid to 160-180°F for perfect dissolution</p>
-                </div>
-                <div>
-                  <p className="font-medium mb-2">Storage</p>
-                  <p className="text-sm text-muted-foreground">Keep in cool, dry place. Seal after each use</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
         </div>
       </div>
     </section>
