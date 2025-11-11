@@ -6,6 +6,11 @@ import { fetchProductByHandle } from "@/lib/mockData";
 import { useCartStore, Product } from "@/stores/cartStore";
 import { toast } from "sonner";
 import { CartDrawer } from "@/components/CartDrawer";
+import { HowItWorks } from "@/components/HowItWorks";
+import { WhatsInside } from "@/components/WhatsInside";
+import { SocialProof } from "@/components/SocialProof";
+import { BrandStory } from "@/components/BrandStory";
+import { FAQ } from "@/components/FAQ";
 
 export default function ProductDetail() {
   const { handle } = useParams<{ handle: string }>();
@@ -242,6 +247,30 @@ export default function ProductDetail() {
           </div>
         </div>
 
+        {/* About Recovery Cocoa Section */}
+        <section className="py-16 bg-background">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <div className="bg-card rounded-xl p-8 md:p-12 shadow-subtle">
+                <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                  About Recovery Cocoa
+                </h2>
+                <div className="space-y-4 text-muted-foreground leading-relaxed">
+                  <p>
+                    FuelHaus blends real cocoa with electrolytes and magnesium for hydration and calm — without excess sugar or artificial ingredients. Comfort that actually does something for your body.
+                  </p>
+                  <p>
+                    Each pouch makes around 10 servings (based on 40g per serving). Completely plant-based, made with organic coconut milk instead of dairy.
+                  </p>
+                  <p>
+                    Our testers rated taste 10/10 — it's rich and smooth, lightly sweetened with coconut sugar, and naturally creamy from organic coconut milk.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Not Your Average Hot Chocolate Section */}
         <section className="py-16 bg-secondary/10">
           <div className="container mx-auto px-4">
@@ -303,6 +332,13 @@ export default function ProductDetail() {
             </div>
           </div>
         </section>
+
+        {/* Homepage Components */}
+        <HowItWorks />
+        <WhatsInside />
+        <SocialProof />
+        <BrandStory />
+        <FAQ />
       </main>
     </div>
   );
