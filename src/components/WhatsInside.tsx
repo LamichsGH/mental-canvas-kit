@@ -5,36 +5,24 @@ import { Link } from "react-router-dom";
 
 const ingredients = [
   {
-    name: "Organic Cacao",
-    benefit: "Rich in antioxidants & magnesium",
+    name: "Organic Cocoa",
+    benefit: "Rich in antioxidants and natural magnesium to support relaxation and restore balance — plus that smooth, indulgent flavor you crave",
   },
   {
-    name: "Coconut Milk Powder",
-    benefit: "Natural MCTs for sustained energy",
+    name: "Organic Coconut Milk",
+    benefit: "Adds creamy texture and healthy fats for comfort and satisfaction without dairy",
   },
   {
-    name: "Natural Electrolytes",
-    benefit: "Optimal hydration support",
+    name: "Magnesium Glycinate",
+    benefit: "Known for its calming properties and gentle digestion support — helps ease tension and restore",
   },
   {
-    name: "Himalayan Pink Salt",
-    benefit: "84 trace minerals",
+    name: "Sea Salt",
+    benefit: "Naturally replenishes lost minerals to keep your body balanced and calm",
   },
   {
-    name: "Organic Coconut Sugar",
-    benefit: "Low glycemic sweetness",
-  },
-  {
-    name: "Organic Vanilla",
-    benefit: "Pure, natural flavor",
-  },
-  {
-    name: "Organic Cinnamon",
-    benefit: "Anti-inflammatory properties",
-  },
-  {
-    name: "Pure Love",
-    benefit: "Crafted with care",
+    name: "Vanilla Bean",
+    benefit: "Rounds out the flavor with natural warmth and aroma, adding a touch of indulgence to every sip",
   },
 ];
 
@@ -44,25 +32,22 @@ export const WhatsInside = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-4xl md:text-5xl mb-4">
-            Clean Ingredients, Clear Benefits
+            What's Inside the Calm
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Every ingredient serves a purpose. No fillers, no artificial anything.
-          </p>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-6xl mx-auto mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto mb-12">
           {ingredients.map((ingredient, index) => (
             <Card 
               key={index} 
-              className="border-0 bg-card hover:bg-secondary/10 transition-all duration-300 shadow-sm hover:shadow-md animate-fade-in"
-              style={{ animationDelay: `${index * 0.05}s` }}
+              className="border-0 bg-card hover:bg-secondary/10 transition-all duration-300 shadow-subtle hover:shadow-md animate-fade-in"
+              style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <CardContent className="p-6 text-center">
-                <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center">
-                  <CheckCircle2 className="h-6 w-6 text-primary" strokeWidth={2} />
+              <CardContent className="p-8">
+                <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-primary/10 flex items-center justify-center">
+                  <CheckCircle2 className="h-8 w-8 text-primary" strokeWidth={2} />
                 </div>
-                <h3 className="text-lg font-semibold mb-2">{ingredient.name}</h3>
-                <p className="text-sm text-muted-foreground">{ingredient.benefit}</p>
+                <h3 className="text-xl font-bold mb-4 text-center">{ingredient.name}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{ingredient.benefit}</p>
               </CardContent>
             </Card>
           ))}
