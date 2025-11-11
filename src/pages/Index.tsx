@@ -12,6 +12,7 @@ import { Newsletter } from "@/components/Newsletter";
 import { BrandStory } from "@/components/BrandStory";
 import { HowItWorks } from "@/components/HowItWorks";
 import { FAQ } from "@/components/FAQ";
+import { SeasonalDrinks } from "@/components/SeasonalDrinks";
 import { Button } from "@/components/ui/button";
 import { Search, Instagram, Facebook, Menu, X } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -195,6 +196,7 @@ export default function Index() {
         <Hero />
         <ProductShowcase />
         <ValueProps />
+        <SeasonalDrinks />
         <SocialProof />
         <HowItWorks />
         <FAQ />
