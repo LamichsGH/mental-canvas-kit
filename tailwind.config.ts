@@ -14,80 +14,71 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['Inter', 'SF Pro Text', 'Helvetica Neue', 'Arial', 'sans-serif'],
-      },
-      fontSize: {
-        'xs': '0.875rem',    /* 14px */
-        'sm': '1rem',        /* 16px */
-        'base': '1.125rem',  /* 18px */
-        'lg': '1.375rem',    /* 22px */
-        'xl': '1.75rem',     /* 28px */
-        '2xl': '2.25rem',    /* 36px */
-        '3xl': '3rem',       /* 48px */
-        '4xl': '4rem',       /* 64px */
+        sans: ['DM Sans', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
+        'cream': 'hsl(var(--card))',
+        'beige': 'hsl(var(--secondary))',
+        'brown': 'hsl(var(--primary))',
+        'sage': 'hsl(var(--muted))',
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
-        
         primary: {
           DEFAULT: "hsl(var(--primary))",
-          hover: "hsl(var(--primary-hover))",
           foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
-          hover: "hsl(var(--secondary-hover))",
           foreground: "hsl(var(--secondary-foreground))",
+        },
+        destructive: {
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
+        },
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
         },
         accent: {
           DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
         },
-        
-        card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
+        brand: {
+          DEFAULT: "hsl(var(--brand))",
+          foreground: "hsl(var(--brand-foreground))",
         },
-        popover: {
-          DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))",
-        },
-        
-        muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
-        },
-        
-        success: "hsl(var(--success))",
-        warning: "hsl(var(--warning))",
-        destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
-        },
-        
-        'text-subtle': "hsl(var(--text-subtle))",
-        
         ingredient: {
           bg: "hsl(var(--ingredient-bg))",
           card: "hsl(var(--ingredient-card))",
           'icon-bg': "hsl(var(--ingredient-icon-bg))",
           icon: "hsl(var(--ingredient-icon))",
         },
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
+        },
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
+        },
+        sidebar: {
+          DEFAULT: "hsl(var(--sidebar-background))",
+          foreground: "hsl(var(--sidebar-foreground))",
+          primary: "hsl(var(--sidebar-primary))",
+          "primary-foreground": "hsl(var(--sidebar-primary-foreground))",
+          accent: "hsl(var(--sidebar-accent))",
+          "accent-foreground": "hsl(var(--sidebar-accent-foreground))",
+          border: "hsl(var(--sidebar-border))",
+          ring: "hsl(var(--sidebar-ring))",
+        },
       },
       borderRadius: {
-        'sm': 'var(--radius-sm)',      /* 12px buttons/inputs */
-        'DEFAULT': 'var(--radius-sm)',
-        'lg': 'var(--radius-lg)',      /* 20px cards/images */
-        'xl': '1.5rem',                /* 24px */
-        '2xl': '2rem',                 /* 32px */
-      },
-      spacing: {
-        'section': '3.5rem',           /* 56px vertical section spacing */
-        'section-sm': '2rem',          /* 32px on mobile */
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
       },
       keyframes: {
         "fade-in": {
