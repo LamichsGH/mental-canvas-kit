@@ -59,7 +59,7 @@ export default function Index() {
     <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container mx-auto px-4 py-2 md:py-3">
+        <div className="container mx-auto px-4 py-1 md:py-1.5">
           {/* Top Row: Search Icon - Logo - User/Cart Icons */}
           <div className="flex items-center justify-between mb-2 md:mb-1">
             {/* Left: Search Icon */}
