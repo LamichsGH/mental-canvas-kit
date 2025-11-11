@@ -170,21 +170,21 @@ export default function Index() {
           <nav className="hidden md:flex items-center justify-center gap-8 md:gap-12">
             <Button 
               variant="ghost" 
-              className="text-base font-normal hover:text-primary transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-foreground after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300"
+              className="text-base font-normal hover:text-primary hover:bg-transparent transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-foreground after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300"
               onClick={() => document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' })}
             >
               Shop
             </Button>
             <Button 
               variant="ghost"
-              className="text-base font-normal hover:text-primary transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-foreground after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300"
+              className="text-base font-normal hover:text-primary hover:bg-transparent transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-foreground after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300"
               onClick={() => navigate('/ingredients')}
             >
               Ingredients
             </Button>
             <Button 
               variant="ghost"
-              className="text-base font-normal hover:text-primary transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-foreground after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300"
+              className="text-base font-normal hover:text-primary hover:bg-transparent transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-foreground after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300"
               onClick={() => navigate('/contact')}
             >
               Contact
