@@ -1,4 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import seasonal1 from "@/assets/seasonal-1.png";
 import seasonal2 from "@/assets/seasonal-2.png";
 import seasonal3 from "@/assets/seasonal-3.png";
@@ -10,28 +11,32 @@ const seasons = [
     name: "Recovery Cocoa",
     description: "Comforting warmth meets deep hydration",
     color: "from-amber-900/30 to-orange-800/20",
-    image: seasonal1
+    image: seasonal1,
+    status: "sold-out" as const
   },
   {
     season: "Spring",
     name: "Restore Latte",
     description: "Smooth energy and grounding calm",
     color: "from-amber-100/50 to-yellow-50/30",
-    image: seasonal2
+    image: seasonal2,
+    status: "coming-soon" as const
   },
   {
     season: "Summer",
     name: "Hydration Elixir",
     description: "Cool, light, and mineral-rich refreshment",
     color: "from-cyan-100/40 to-teal-50/30",
-    image: seasonal3
+    image: seasonal3,
+    status: "coming-soon" as const
   },
   {
     season: "Autumn",
     name: "Rebalance Chai",
     description: "Spice, calm, and gentle renewal",
     color: "from-orange-200/40 to-amber-100/30",
-    image: seasonal4
+    image: seasonal4,
+    status: "coming-soon" as const
   }
 ];
 
@@ -59,12 +64,22 @@ export const SeasonalDrinks = () => {
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 {/* Drink Image */}
-                <div className="aspect-square overflow-hidden">
+                <div className="aspect-square overflow-hidden relative">
                   <img 
                     src={drink.image} 
                     alt={`${drink.season} - ${drink.name}`}
                     className="w-full h-full object-cover"
                   />
+                  {drink.status && (
+                    <div className="absolute top-3 right-3">
+                      <Badge 
+                        variant={drink.status === "sold-out" ? "destructive" : "secondary"}
+                        className="text-xs font-semibold uppercase tracking-wide"
+                      >
+                        {drink.status === "sold-out" ? "Sold Out" : "Coming Soon"}
+                      </Badge>
+                    </div>
+                  )}
                 </div>
 
                 {/* Content */}
