@@ -30,10 +30,10 @@ export const SocialProof = () => {
         <div className="max-w-6xl mx-auto">
           {/* Main headline */}
           <div className="text-center mb-16 animate-fade-in">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl mb-4 font-bold">
+            <h2 className="text-5xl md:text-6xl lg:text-7xl mb-6 font-extrabold">
               The First Drop Sold Out
             </h2>
-            <p className="text-xl md:text-2xl text-muted-foreground">
+            <p className="text-2xl md:text-3xl text-muted-foreground font-semibold">
               The Haus spoke — every pack was gone in days
             </p>
           </div>
@@ -47,7 +47,7 @@ export const SocialProof = () => {
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <CardContent className="p-6">
-                  <p className="text-foreground leading-relaxed italic">"{testimonial.text}"</p>
+                  <p className="text-foreground leading-relaxed italic font-medium text-lg">"{testimonial.text}"</p>
                 </CardContent>
               </Card>
             ))}
