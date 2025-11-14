@@ -8,7 +8,7 @@ export const Hero = () => {
 
   return (
     <section className="relative min-h-[600px] flex items-center justify-center overflow-hidden" style={{ backgroundColor: '#8b5e46' }}>
-      <div className="absolute inset-0 bg-[url('/src/assets/hero-background.png')] bg-cover bg-left-center opacity-30" />
+      <div className="absolute inset-0 bg-[url('/src/assets/hero-background.png')] bg-cover bg-left opacity-30" />
       
       <div className="container mx-auto px-4 py-20 relative z-10">
         <div className="max-w-3xl mx-auto text-center animate-fade-in">
