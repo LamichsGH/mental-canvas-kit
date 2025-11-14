@@ -16,7 +16,7 @@ export const Hero = () => {
             <p className="text-sm text-muted-foreground">Loved by our first 50 testers</p>
           </div>
           <h1 className="text-5xl md:text-6xl lg:text-7xl mb-6 text-foreground">
-            Hydration for Calm Moments
+            For when you need to refill more than your cup
           </h1>
           <p className="text-xl md:text-2xl text-muted-foreground mb-10 max-w-2xl mx-auto">
             Electrolyte-infused comfort drinks designed to help you recharge softly
