@@ -42,8 +42,8 @@ export default defineConfig(({ mode }) => ({
         categories: ['shopping', 'health', 'food']
       },
       workbox: {
+        maximumFileSizeToCacheInBytes: 3145728, // 3 MB
         globPatterns: ['**/*.{js,css,html,ico,png,svg,jpg,jpeg,webp}'],
-        globIgnores: ['**/hero-background*.png', '**/haus-promise*.png'],
         runtimeCaching: [
           {
             urlPattern: /^https:\/\/.*\.shopify\.com\/.*/i,
