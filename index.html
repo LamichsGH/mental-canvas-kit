@@ -2,6 +2,21 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    
+    <!-- Dynamic base path detection for Lovable preview vs public domain -->
+    <script>
+      (function() {
+        // Get the current path
+        var path = window.location.pathname;
+        // If we're in a subdirectory (preview), set base to that directory
+        // If we're at root (public domain), base stays at /
+        if (path !== '/' && !path.endsWith('.html')) {
+          var basePath = path.substring(0, path.lastIndexOf('/') + 1);
+          document.write('<base href="' + basePath + '" />');
+        }
+      })();
+    </script>
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
     <meta name="theme-color" content="#8b5e46" />
     <meta name="apple-mobile-web-app-capable" content="yes" />

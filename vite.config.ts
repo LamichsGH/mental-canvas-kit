@@ -5,23 +5,12 @@ import { componentTagger } from "lovable-tagger";
 import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig(({ mode }) => ({
-  // Use relative paths for assets to work in subdirectories
-  base: mode === 'production' ? '/' : './',
+  // Always use absolute paths - let the HTML <base> tag handle it
+  base: '/',
   
   server: {
     host: "::",
     port: 8080,
-  },
-  
-  build: {
-    // Ensure assets use relative paths
-    assetsDir: 'assets',
-    rollupOptions: {
-      output: {
-        // Use relative paths for manual chunks
-        manualChunks: undefined
-      }
-    }
   },
   
   plugins: [
