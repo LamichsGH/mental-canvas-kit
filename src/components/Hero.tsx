@@ -9,7 +9,7 @@ export const Hero = () => {
 
   return (
     <section className="relative min-h-[400px] md:min-h-[500px] lg:min-h-[700px] xl:min-h-[800px] flex items-center justify-center overflow-hidden" style={{ backgroundColor: '#8b5e46' }}>
-      <div className="absolute inset-0 bg-cover" style={{ backgroundImage: `url(${heroBackground})`, backgroundPosition: 'left 20%', opacity: 0.3 }} />
+      <div className="absolute inset-0 bg-cover" style={{ backgroundImage: `url(${heroBackground})`, backgroundPosition: 'center center', opacity: 0.4 }} />
       
       <div className="container mx-auto px-4 py-20 relative z-10">
         <div className="max-w-3xl mx-auto text-center animate-fade-in">
