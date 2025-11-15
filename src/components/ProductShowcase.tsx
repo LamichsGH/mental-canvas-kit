@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { fetchProductByHandle, formatPrice, getProductStatus } from "@/lib/shopify";
 import { ProductShowcaseSkeleton } from "@/components/ProductShowcaseSkeleton";
-import { SafeImage } from "@/components/ui/SafeImage";
 import cocoaPreparation from "@/assets/cocoa-preparation.png";
 
 export const ProductShowcase = () => {
@@ -53,7 +52,7 @@ export const ProductShowcase = () => {
             <div className="p-6 md:p-10 flex flex-col items-center justify-center" style={{ backgroundColor: '#f5efea' }}>
               {/* Dynamic Product Image */}
               <div className="w-full aspect-square max-w-xs rounded-xl shadow-lg mb-4 overflow-hidden">
-                <SafeImage 
+                <img 
                   src={productData.image} 
                   alt={productData.title} 
                   className="w-full h-full object-cover"

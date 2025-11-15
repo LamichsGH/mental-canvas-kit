@@ -12,7 +12,6 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchProducts, getProductStatus, getProductPrice, getProductVariantId, formatPrice } from "@/lib/shopify";
 import { useCartStore } from "@/stores/cartStore";
 import { SeasonalDrinksSkeleton } from "@/components/SeasonalDrinksSkeleton";
-import { SafeImage } from "@/components/ui/SafeImage";
 import seasonal1 from "@/assets/seasonal-1.png";
 import seasonal2 from "@/assets/seasonal-2.png";
 import seasonal3 from "@/assets/seasonal-3.png";
@@ -219,7 +218,7 @@ export const SeasonalDrinks = () => {
                   {/* Gradient overlay for better badge visibility */}
                   <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-transparent z-10" />
                   
-                  <SafeImage 
+                  <img 
                     src={drink.image} 
                     alt={`${drink.season} - ${drink.name}`}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"

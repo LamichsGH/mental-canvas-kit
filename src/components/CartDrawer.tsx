@@ -12,7 +12,6 @@ import {
 } from "@/components/ui/sheet";
 import { ShoppingCart, Minus, Plus, Trash2, ExternalLink, Loader2 } from "lucide-react";
 import { useCartStore } from "@/stores/cartStore";
-import { SafeImage } from "@/components/ui/SafeImage";
 
 export const CartDrawer = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -90,7 +89,7 @@ export const CartDrawer = () => {
                     <div key={item.variantId} className="flex gap-4 p-3 rounded-xl bg-secondary/10 hover:bg-secondary/20 transition-colors">
                       <div className="w-20 h-20 bg-background rounded-lg overflow-hidden flex-shrink-0 shadow-subtle">
                         {item.image && (
-                          <SafeImage
+                          <img
                             src={item.image}
                             alt={item.title}
                             className="w-full h-full object-cover"

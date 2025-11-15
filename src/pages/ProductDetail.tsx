@@ -7,7 +7,6 @@ import { useCartStore } from "@/stores/cartStore";
 import { toast } from "sonner";
 import { useState } from "react";
 import { CartDrawer } from "@/components/CartDrawer";
-import { SafeImage } from "@/components/ui/SafeImage";
 import { HowItWorks } from "@/components/HowItWorks";
 import { WhatsInside } from "@/components/WhatsInside";
 import { SocialProof } from "@/components/SocialProof";
@@ -115,7 +114,7 @@ export default function ProductDetail() {
         <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
           <div className="aspect-square bg-secondary/30 rounded-2xl overflow-hidden shadow-lg">
             {productData.images?.[0] ? (
-              <SafeImage
+              <img
                 src={productData.images[0].url}
                 alt={productData.title}
                 className="w-full h-full object-cover"
