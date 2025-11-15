@@ -306,26 +306,28 @@ export const SeasonalDrinks = () => {
                     )}
                     
                     {drink.status === "coming-soon" && (
-                      <Button 
-                        variant="outline"
-                        className="w-full group-hover:scale-105 transition-transform border-2 bg-white/20 hover:bg-white/40 min-h-[44px]"
-                        style={{ 
-                          color: '#1c1c1c', 
-                          borderColor: 'rgba(28, 28, 28, 0.3)' 
-                        }}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleCardClick(drink);
-                        }}
-                      >
-                        <Mail className="w-4 h-4 mr-2" />
-                        Join Waitlist
+                      <div className="space-y-2">
+                        <Button 
+                          variant="outline"
+                          className="w-full group-hover:scale-105 transition-transform border-2 bg-white/20 hover:bg-white/40 min-h-[44px]"
+                          style={{ 
+                            color: '#1c1c1c', 
+                            borderColor: 'rgba(28, 28, 28, 0.3)' 
+                          }}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleCardClick(drink);
+                          }}
+                        >
+                          <Mail className="w-4 h-4 mr-2" />
+                          Join Waitlist
+                        </Button>
                         {drink.expectedLaunch && (
-                          <span className="ml-2 text-xs opacity-70">
-                            • {drink.expectedLaunch}
-                          </span>
+                          <p className="text-xs text-center opacity-70" style={{ color: '#1c1c1c' }}>
+                            Expected: {drink.expectedLaunch}
+                          </p>
                         )}
-                      </Button>
+                      </div>
                     )}
                   </div>
                 </CardContent>
