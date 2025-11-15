@@ -12,3 +12,5 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+# Cache-bust timestamp: 20251115-170000

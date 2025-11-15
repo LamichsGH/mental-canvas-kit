@@ -1,3 +1,10 @@
+console.log('🚀 Fuel Haus Loading...', {
+  location: window.location.href,
+  baseURI: document.baseURI,
+  mode: import.meta.env.MODE,
+  rootElement: document.getElementById("root")
+});
+
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { Component, ReactNode } from "react";
