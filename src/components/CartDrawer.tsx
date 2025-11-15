@@ -13,6 +13,17 @@ import {
 import { ShoppingCart, Minus, Plus, Trash2, ExternalLink, Loader2 } from "lucide-react";
 import { useCartStore } from "@/stores/cartStore";
 
+// Helper function to safely get price as number
+const getItemPrice = (item: any): number => {
+  if (typeof item.price === 'number') {
+    return item.price;
+  }
+  if (item.price && typeof item.price === 'object' && item.price.amount) {
+    return parseFloat(item.price.amount) || 0;
+  }
+  return 0;
+};
+
 export const CartDrawer = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { 
@@ -24,7 +35,7 @@ export const CartDrawer = () => {
   } = useCartStore();
   
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
-  const totalPrice = items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+  const totalPrice = items.reduce((sum, item) => sum + (getItemPrice(item) * item.quantity), 0);
 
   const handleCheckout = async () => {
     try {
@@ -100,7 +111,7 @@ export const CartDrawer = () => {
                       <div className="flex-1 min-w-0">
                         <h4 className="font-medium truncate">{item.title}</h4>
                         <p className="font-semibold">
-                          £{item.price.toFixed(2)}
+                          £{getItemPrice(item).toFixed(2)}
                         </p>
                       </div>
                       
@@ -144,7 +155,7 @@ export const CartDrawer = () => {
                   <div className="flex justify-between text-sm">
                     <span className="text-muted-foreground">Subtotal</span>
                     <span className="font-medium">
-                      £{totalPrice.toFixed(2)}
+                      £{(totalPrice || 0).toFixed(2)}
                     </span>
                   </div>
                   <div className="flex justify-between text-sm">
@@ -155,7 +166,7 @@ export const CartDrawer = () => {
                 <div className="flex justify-between items-center pt-2 border-t">
                   <span className="text-lg font-medium">Total</span>
                   <span className="text-2xl font-medium text-primary">
-                    £{totalPrice.toFixed(2)}
+                    £{(totalPrice || 0).toFixed(2)}
                   </span>
                 </div>
                 
