@@ -24,7 +24,7 @@ export const CartDrawer = () => {
   } = useCartStore();
   
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
-  const totalPrice = items.reduce((sum, item) => sum + (parseFloat(item.price.amount) * item.quantity), 0);
+  const totalPrice = items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
 
   const handleCheckout = async () => {
     try {
@@ -88,22 +88,19 @@ export const CartDrawer = () => {
                   {items.map((item) => (
                     <div key={item.variantId} className="flex gap-4 p-3 rounded-xl bg-secondary/10 hover:bg-secondary/20 transition-colors">
                       <div className="w-20 h-20 bg-background rounded-lg overflow-hidden flex-shrink-0 shadow-subtle">
-                        {item.product.images?.[0] && (
+                        {item.image && (
                           <img
-                            src={item.product.images[0].url}
-                            alt={item.product.title}
+                            src={item.image}
+                            alt={item.title}
                             className="w-full h-full object-cover"
                           />
                         )}
                       </div>
                       
                       <div className="flex-1 min-w-0">
-                        <h4 className="font-medium truncate">{item.product.title}</h4>
-                        <p className="text-sm text-muted-foreground">
-                          {item.selectedOptions.map(option => option.value).join(' • ')}
-                        </p>
+                        <h4 className="font-medium truncate">{item.title}</h4>
                         <p className="font-semibold">
-                          £{parseFloat(item.price.amount).toFixed(2)}
+                          £{item.price.toFixed(2)}
                         </p>
                       </div>
                       
