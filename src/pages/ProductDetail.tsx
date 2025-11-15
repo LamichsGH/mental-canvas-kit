@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ShoppingCart } from "lucide-react";
-import { fetchProductByHandle } from "@/lib/mockData";
-import { useCartStore, Product } from "@/stores/cartStore";
+import { useQuery } from "@tanstack/react-query";
+import { fetchProductByHandle, getProductStatus, getProductPrice, getProductVariantId, formatPrice } from "@/lib/shopify";
+import { useCartStore } from "@/stores/cartStore";
 import { toast } from "sonner";
+import { useState } from "react";
 import { CartDrawer } from "@/components/CartDrawer";
 import { HowItWorks } from "@/components/HowItWorks";
 import { WhatsInside } from "@/components/WhatsInside";
@@ -14,104 +15,67 @@ import { FAQ } from "@/components/FAQ";
 
 export default function ProductDetail() {
   const { handle } = useParams<{ handle: string }>();
-  const [product, setProduct] = useState<Product | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [selectedVariant, setSelectedVariant] = useState<any>(null);
   const [quantity, setQuantity] = useState(1);
-  const addItem = useCartStore(state => state.addItem);
+  const { addItem } = useCartStore();
 
-  useEffect(() => {
-    if (handle) {
-      loadProduct();
-    } else {
-      // If no handle, create a default Recovery Cocoa product
-      const defaultProduct = {
-        id: "recovery-cocoa",
-        title: "Recovery Cocoa",
-        handle: "recovery-cocoa",
-        description: "FuelHaus blends real cocoa with electrolytes and magnesium for hydration and calm",
-        images: [],
-        price: { amount: "21.99", currencyCode: "GBP" },
-        variants: [{ id: "default", title: "Default", availableForSale: true, price: { amount: "21.99", currencyCode: "GBP" }, selectedOptions: [] }],
-        options: []
-      };
-      setProduct(defaultProduct);
-      setSelectedVariant(defaultProduct.variants[0]);
-      setLoading(false);
-    }
-  }, [handle]);
+  // Fetch product from Shopify
+  const { data: product, isLoading, error } = useQuery({
+    queryKey: ['product', handle],
+    queryFn: () => fetchProductByHandle(handle || 'recovery-cocoa'),
+    enabled: !!handle,
+    staleTime: 5 * 60 * 1000, // Cache for 5 minutes
+  });
 
-  const loadProduct = async () => {
-    try {
-      setLoading(true);
-      const data = await fetchProductByHandle(handle!);
-      
-      if (data) {
-        // Use real Shopify product data if found
-        setProduct(data);
-        if (data?.variants?.[0]) {
-          setSelectedVariant(data.variants[0]);
-        }
-      } else {
-        // Fallback to hardcoded Recovery Cocoa if Shopify product not found
-        const defaultProduct = {
-          id: "recovery-cocoa",
-          title: "Recovery Cocoa",
-          handle: handle!,
-          description: "FuelHaus blends real cocoa with electrolytes and magnesium for hydration and calm",
-          images: [],
-          price: { amount: "21.99", currencyCode: "GBP" },
-          variants: [{ id: "default", title: "Default", availableForSale: true, price: { amount: "21.99", currencyCode: "GBP" }, selectedOptions: [] }],
-          options: []
-        };
-        setProduct(defaultProduct);
-        setSelectedVariant(defaultProduct.variants[0]);
-      }
-    } catch (error) {
-      console.error('Error loading product:', error);
-      // Even on API error, show the hardcoded product instead of failing
-      const defaultProduct = {
-        id: "recovery-cocoa",
-        title: "Recovery Cocoa",
-        handle: handle!,
-        description: "FuelHaus blends real cocoa with electrolytes and magnesium for hydration and calm",
-        images: [],
-        price: { amount: "21.99", currencyCode: "GBP" },
-        variants: [{ id: "default", title: "Default", availableForSale: true, price: { amount: "21.99", currencyCode: "GBP" }, selectedOptions: [] }],
-        options: []
-      };
-      setProduct(defaultProduct);
-      setSelectedVariant(defaultProduct.variants[0]);
-    } finally {
-      setLoading(false);
-    }
+  // Fallback product data for Recovery Cocoa
+  const fallbackProduct = {
+    id: "recovery-cocoa",
+    title: "Recovery Cocoa",
+    handle: handle || "recovery-cocoa",
+    description: "FuelHaus blends real cocoa with electrolytes and magnesium for hydration and calm — without excess sugar or artificial ingredients. Comfort that actually does something for your body.",
+    images: [],
+    price: { amount: "21.99", currencyCode: "GBP" },
+    variants: [{ 
+      id: "gid://shopify/ProductVariant/recovery-cocoa-default", 
+      title: "Default", 
+      availableForSale: true, 
+      price: { amount: "21.99", currencyCode: "GBP" }, 
+      selectedOptions: [] 
+    }],
+    options: []
   };
 
+  // Use Shopify data if available, otherwise fallback
+  const productData = product || fallbackProduct;
+  const productStatus = getProductStatus(product);
+  const productPrice = getProductPrice(product) || 21.99;
+  const variantId = getProductVariantId(product) || "gid://shopify/ProductVariant/recovery-cocoa-default";
+
   const handleAddToCart = () => {
-    if (!product || !selectedVariant) return;
+    if (!productData) return;
 
     const cartItem = {
-      product: product,
-      variantId: selectedVariant.id,
-      variantTitle: `${quantity} Bag${quantity > 1 ? 's' : ''}`,
-      price: selectedVariant.price || product.price,
+      id: variantId,
+      title: productData.title,
+      price: productPrice,
       quantity: quantity,
-      selectedOptions: selectedVariant.selectedOptions || []
+      image: productData.images?.[0]?.url || '',
+      variantId: variantId,
+      handle: productData.handle
     };
 
     addItem(cartItem);
-    toast.success(`Added ${quantity} bag${quantity > 1 ? 's' : ''} to cart`, { position: 'top-center' });
+    toast.success(`Added ${quantity} ${productData.title} to cart`, { position: 'top-center' });
   };
 
-  if (loading) {
+  if (isLoading) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
-        <p className="text-muted-foreground">Loading...</p>
+        <p className="text-muted-foreground">Loading product...</p>
       </div>
     );
   }
 
-  if (!product) {
+  if (error && !handle) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
@@ -149,15 +113,15 @@ export default function ProductDetail() {
       <main className="container mx-auto px-4 py-8">
         <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
           <div className="aspect-square bg-secondary/30 rounded-2xl overflow-hidden shadow-lg">
-            {product.images?.[0] ? (
+            {productData.images?.[0] ? (
               <img
-                src={product.images[0].url}
-                alt={product.title}
+                src={productData.images[0].url}
+                alt={productData.title}
                 className="w-full h-full object-cover"
               />
             ) : (
               <div className="w-full h-full flex items-center justify-center">
-                <p className="text-muted-foreground">No image</p>
+                <p className="text-muted-foreground">No image available</p>
               </div>
             )}
           </div>
@@ -168,16 +132,27 @@ export default function ProductDetail() {
               <p className="text-sm text-muted-foreground">Loved by our first 50 testers</p>
             </div>
 
-            {/* Product Title */}
-            <h1 className="text-4xl font-bold">{product.title}</h1>
+            {/* Dynamic Product Title */}
+            <h1 className="text-4xl font-bold">{productData.title}</h1>
 
-            {/* Pricing */}
+            {/* Dynamic Pricing */}
             <div className="flex items-center gap-3">
               <span className="text-3xl font-semibold text-primary">
-                £{parseFloat(product.price?.amount || "21.99").toFixed(2)}
+                {formatPrice(productPrice, productData.price?.currencyCode || 'GBP')}
               </span>
-              <span className="text-xl text-muted-foreground line-through">£24.99</span>
+              {productStatus === 'available' && (
+                <span className="text-xl text-muted-foreground line-through">£24.99</span>
+              )}
             </div>
+
+            {/* Product Status */}
+            {productStatus !== 'available' && (
+              <div className="inline-block px-4 py-2 rounded-lg bg-secondary/20 w-fit">
+                <p className="text-sm font-medium">
+                  {productStatus === 'sold-out' ? 'Currently Sold Out' : 'Coming Soon'}
+                </p>
+              </div>
+            )}
 
             {/* Product Benefits */}
             <div>
@@ -232,14 +207,17 @@ export default function ProductDetail() {
               </div>
             </div>
 
-            {/* Add to Cart Button */}
+            {/* Dynamic Add to Cart Button */}
             <Button
               size="lg"
               className="w-full rounded-xl"
               onClick={handleAddToCart}
+              disabled={productStatus !== 'available'}
             >
               <ShoppingCart className="w-5 h-5 mr-2" />
-              Add to Cart
+              {productStatus === 'available' ? 'Add to Cart' : 
+               productStatus === 'sold-out' ? 'Currently Sold Out' : 
+               'Coming Soon'}
             </Button>
             
             <div className="pt-6 border-t">
@@ -256,11 +234,11 @@ export default function ProductDetail() {
             <div className="max-w-4xl mx-auto">
               <div className="bg-card rounded-xl p-8 md:p-12 shadow-subtle">
                 <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                  About Recovery Cocoa
+                  About {productData.title}
                 </h2>
                 <div className="space-y-4 text-muted-foreground leading-relaxed">
                   <p>
-                    FuelHaus blends real cocoa with electrolytes and magnesium for hydration and calm — without excess sugar or artificial ingredients. Comfort that actually does something for your body.
+                    {productData.description || "FuelHaus blends real cocoa with electrolytes and magnesium for hydration and calm — without excess sugar or artificial ingredients. Comfort that actually does something for your body."}
                   </p>
                   <p>
                     Each pouch makes around 10 servings (based on 40g per serving). Completely plant-based, made with organic coconut milk instead of dairy.

@@ -35,6 +35,17 @@ export interface Product {
 }
 
 export interface CartItem {
+  id: string;
+  title: string;
+  price: number;
+  quantity: number;
+  image: string;
+  variantId: string;
+  handle: string;
+}
+
+// Legacy interface for backward compatibility
+export interface LegacyCartItem {
   product: Product;
   variantId: string;
   variantTitle: string;
@@ -75,6 +86,12 @@ export const useCartStore = create<CartStore>()(
       isLoading: false,
 
       addItem: (item) => {
+        // Validate Shopify variant ID
+        if (!item.variantId || !item.variantId.startsWith('gid://shopify/ProductVariant/')) {
+          console.error('Invalid Shopify variant ID:', item.variantId);
+          return;
+        }
+
         const { items } = get();
         const existingItem = items.find(i => i.variantId === item.variantId);
         
@@ -144,8 +161,15 @@ export const useCartStore = create<CartStore>()(
         setLoading(true);
         try {
           const { createStorefrontCheckout } = await import('@/lib/shopify');
-          const checkoutUrl = await createStorefrontCheckout(validItems);
+          // Transform cart items to the format expected by createStorefrontCheckout
+          const checkoutItems = validItems.map(item => ({
+            quantity: item.quantity,
+            variantId: item.variantId,
+          }));
+          const checkoutUrl = await createStorefrontCheckout(checkoutItems);
           setCheckoutUrl(checkoutUrl);
+          // Redirect to checkout
+          window.location.href = checkoutUrl;
         } catch (error) {
           console.error('Failed to create checkout:', error);
         } finally {

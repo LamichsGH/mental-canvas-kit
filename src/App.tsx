@@ -9,7 +9,17 @@ import Ingredients from "./pages/Ingredients";
 import Contact from "./pages/Contact";
 import Install from "./pages/Install";
 import NotFound from "./pages/NotFound";
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 5 * 60 * 1000, // 5 minutes
+      gcTime: 10 * 60 * 1000, // 10 minutes (formerly cacheTime)
+      refetchOnWindowFocus: true,
+      refetchOnMount: true,
+      retry: 2,
+    },
+  },
+});
 
 const App = () => {
   // Use HashRouter inside the Lovable editor iframe to avoid sandbox/history issues

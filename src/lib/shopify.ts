@@ -344,3 +344,48 @@ export async function createStorefrontCheckout(items: any[]): Promise<string> {
     throw error;
   }
 }
+
+// Helper Functions for Dynamic Product Handling
+
+// Check if product is available
+export function isProductAvailable(product: any): boolean {
+  return product?.variants?.some((v: any) => v.availableForSale) || false;
+}
+
+// Get product status
+export function getProductStatus(product: any): "available" | "sold-out" | "coming-soon" {
+  if (!product) return "coming-soon";
+  
+  const hasAvailableVariant = product.variants?.some((v: any) => v.availableForSale);
+  const hasVariants = product.variants?.length > 0;
+  
+  if (hasAvailableVariant) return "available";
+  if (hasVariants) return "sold-out";
+  return "coming-soon";
+}
+
+// Get first available variant
+export function getFirstAvailableVariant(product: any) {
+  return product?.variants?.find((v: any) => v.availableForSale);
+}
+
+// Get cheapest price
+export function getProductPrice(product: any): number | null {
+  const variant = getFirstAvailableVariant(product) || product?.variants?.[0];
+  return variant ? parseFloat(variant.price.amount) : null;
+}
+
+// Format price for display
+export function formatPrice(amount: number | null, currency = 'USD'): string {
+  if (!amount) return 'Price unavailable';
+  return new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency,
+  }).format(amount);
+}
+
+// Get product variant ID
+export function getProductVariantId(product: any): string | null {
+  const variant = getFirstAvailableVariant(product) || product?.variants?.[0];
+  return variant?.id || null;
+}
