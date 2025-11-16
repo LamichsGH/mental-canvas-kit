@@ -1,9 +1,9 @@
-import { Component, ReactNode } from 'react';
+import { Component, ReactNode, useEffect } from 'react';
 import { Toaster } from "./components/ui/toaster";
 import { Toaster as Sonner } from "./components/ui/sonner";
 import { TooltipProvider } from "./components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, HashRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, HashRouter, Routes, Route, useLocation } from "react-router-dom";
 import Index from "./pages/Index";
 import ProductDetail from "./pages/ProductDetail";
 import Ingredients from "./pages/Ingredients";
@@ -80,6 +80,36 @@ const queryClient = new QueryClient({
   },
 });
 
+// Scroll handler component for managing hash navigation and scroll restoration
+function ScrollHandler() {
+  const location = useLocation();
+  const { pathname, hash } = location;
+
+  useEffect(() => {
+    if (hash) {
+      // Handle hash navigation with proper offset
+      setTimeout(() => {
+        const id = hash.replace('#', '');
+        const element = document.getElementById(id);
+        if (element) {
+          const headerHeight = document.querySelector('header')?.offsetHeight || 120;
+          const elementPosition = element.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        }
+      }, 100);
+    } else {
+      // No hash, scroll to top
+      window.scrollTo(0, 0);
+    }
+  }, [pathname, hash]);
+
+  return null;
+}
+
 const App = () => {
   // Use HashRouter inside the Lovable editor iframe to avoid sandbox/history issues
   const isInIframe = typeof window !== 'undefined' && window.self !== window.top;
@@ -92,6 +122,7 @@ const App = () => {
           <Toaster />
           <Sonner />
           <Router>
+            <ScrollHandler />
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/product/:handle" element={<ProductDetail />} />

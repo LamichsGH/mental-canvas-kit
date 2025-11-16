@@ -1,4 +1,4 @@
-export const scrollToElement = (elementId: string, offset: number = 80) => {
+export const scrollToElement = (elementId: string, offset: number = 120) => {
   const element = document.getElementById(elementId);
   if (element) {
     const elementPosition = element.getBoundingClientRect().top;
@@ -13,7 +13,7 @@ export const scrollToElement = (elementId: string, offset: number = 80) => {
 
 export const getHeaderHeight = () => {
   const header = document.querySelector('header');
-  return header ? header.offsetHeight : 80;
+  return header ? header.offsetHeight : 120;
 };
 
 export const scrollToSection = (sectionId: string) => {

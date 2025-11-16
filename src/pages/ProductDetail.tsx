@@ -12,7 +12,7 @@ import { HowItWorks } from "@/components/HowItWorks";
 import { WhatsInside } from "@/components/WhatsInside";
 import { SocialProof } from "@/components/SocialProof";
 import { FAQ } from "@/components/FAQ";
-import cocoaLifestyle from "@/assets/cocoa-lifestyle.jpeg";
+import cocoaLifestyle from "@/assets/cocoa-lifestyle-new.jpg";
 import cocoaPreparation from "@/assets/cocoa-preparation.png";
 import ingredientCocoa from "@/assets/ingredient-cocoa.jpg";
 import ingredientCoconut from "@/assets/ingredient-coconut.jpg";

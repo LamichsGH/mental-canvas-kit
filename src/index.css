@@ -162,6 +162,17 @@
     @apply absolute -top-10 left-4 z-[100] bg-primary text-primary-foreground px-4 py-2 rounded-lg;
     @apply focus:top-4 transition-all;
   }
+  
+  /* Scroll offset compensation for sticky headers */
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 120px;
+  }
+
+  section[id],
+  div[id] {
+    scroll-margin-top: 120px;
+  }
 }
 
 /* Improve focus visibility for accessibility */

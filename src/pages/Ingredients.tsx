@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { scrollToSection } from "@/lib/scroll";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, CheckCircle2, Leaf, Shield, Award } from "lucide-react";
@@ -234,7 +235,10 @@ export default function Ingredients() {
                 </p>
                 <Button 
                   size="lg"
-                  onClick={() => navigate("/#products")}
+                  onClick={() => {
+                    navigate("/");
+                    setTimeout(() => scrollToSection('products'), 150);
+                  }}
                   className="rounded-xl shadow-subtle"
                 >
                   Shop Now

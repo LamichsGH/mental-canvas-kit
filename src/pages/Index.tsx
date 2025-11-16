@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { fetchProducts } from "@/lib/mockData";
 import { Product } from "@/stores/cartStore";
 import { toast } from "sonner";
@@ -22,6 +22,7 @@ import { scrollToSection } from "@/lib/scroll";
 
 export default function Index() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchOpen, setSearchOpen] = useState(false);
@@ -31,6 +32,18 @@ export default function Index() {
   useEffect(() => {
     loadProducts();
   }, []);
+
+  // Handle hash navigation from other pages
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash) {
+      // Wait for page to render, then scroll
+      setTimeout(() => {
+        const id = hash.replace('#', '');
+        scrollToSection(id);
+      }, 100);
+    }
+  }, [location]);
 
   const loadProducts = async () => {
     try {

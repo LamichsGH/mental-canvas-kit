@@ -1,10 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import heroBackground from "@/assets/hero-background.svg";
+import { scrollToSection } from "@/lib/scroll";
 
 export const Hero = () => {
   const scrollToProducts = () => {
-    document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' });
+    scrollToSection('products');
   };
 
   return (
