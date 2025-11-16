@@ -37,7 +37,6 @@ export interface ShopifyProduct {
             currencyCode: string;
           };
           availableForSale: boolean;
-          quantityAvailable: number;
           selectedOptions: Array<{
             name: string;
             value: string;
@@ -86,7 +85,6 @@ const STOREFRONT_QUERY = `
                   currencyCode
                 }
                 availableForSale
-                quantityAvailable
                 selectedOptions {
                   name
                   value
@@ -135,7 +133,6 @@ const PRODUCT_BY_HANDLE_QUERY = `
               currencyCode
             }
             availableForSale
-            quantityAvailable
             selectedOptions {
               name
               value
@@ -257,7 +254,6 @@ export function transformShopifyProduct(shopifyProduct: ShopifyProduct) {
         currencyCode: edge.node.price.currencyCode,
       },
       availableForSale: edge.node.availableForSale,
-      quantityAvailable: edge.node.quantityAvailable,
       selectedOptions: edge.node.selectedOptions,
     })),
     options: shopifyProduct.node.options,
@@ -312,7 +308,6 @@ export async function fetchProductByHandle(handle: string) {
           currencyCode: edge.node.price.currencyCode,
         },
         availableForSale: edge.node.availableForSale,
-        quantityAvailable: edge.node.quantityAvailable,
         selectedOptions: edge.node.selectedOptions,
       })),
       options: product.options,
@@ -402,9 +397,10 @@ export function getProductVariantId(product: any): string | null {
 }
 
 // Get available quantity for a product variant
+// Note: quantityAvailable requires special API permissions, so we just check availableForSale
 export function getAvailableQuantity(product: any): number {
   if (!product) return 0;
   
-  const variant = getFirstAvailableVariant(product) || product?.variants?.[0];
-  return variant?.quantityAvailable ?? 0;
+  const variant = getFirstAvailableVariant(product);
+  return variant ? 999 : 0; // Return high number if available, 0 if not
 }
