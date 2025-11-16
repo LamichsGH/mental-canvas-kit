@@ -1,26 +1,23 @@
 interface SectionDividerProps {
-  variant?: 'wave' | 'curve' | 'slope';
+  variant?: 'subtle' | 'angle';
   flip?: boolean;
   topColor?: string;
   bottomColor?: string;
 }
 
 export const SectionDivider = ({ 
-  variant = 'wave', 
+  variant = 'subtle', 
   flip = false,
   topColor = '#f5efea',
   bottomColor = '#ffffff'
 }: SectionDividerProps) => {
   const getPath = () => {
     switch (variant) {
-      case 'wave':
-        return 'M0,32L48,37.3C96,43,192,53,288,58.7C384,64,480,64,576,58.7C672,53,768,43,864,48C960,53,1056,75,1152,80C1248,85,1344,75,1392,69.3L1440,64L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z';
-      case 'curve':
-        return 'M0,64L1440,32L1440,0L0,0Z';
-      case 'slope':
-        return 'M0,96L1440,0L1440,0L0,0Z';
+      case 'angle':
+        return 'M0,20L1440,0L1440,0L0,0Z';
+      case 'subtle':
       default:
-        return 'M0,32L48,37.3C96,43,192,53,288,58.7C384,64,480,64,576,58.7C672,53,768,43,864,48C960,53,1056,75,1152,80C1248,85,1344,75,1392,69.3L1440,64L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z';
+        return 'M0,10L1440,0L1440,0L0,0Z';
     }
   };
 
@@ -34,9 +31,9 @@ export const SectionDivider = ({
       }}
     >
       <svg
-        viewBox="0 0 1440 100"
+        viewBox="0 0 1440 20"
         preserveAspectRatio="none"
-        className="w-full h-16 md:h-24"
+        className="w-full h-4 md:h-6"
         style={{ display: 'block' }}
       >
         <defs>
