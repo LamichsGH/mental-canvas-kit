@@ -306,30 +306,30 @@ export default function ProductDetail() {
         </section>
 
         {/* How It Works Component */}
-        <SectionDivider variant="wave" topColor="#f5efea" bottomColor="#ffffff" />
+        <SectionDivider variant="subtle" topColor="#f5efea" bottomColor="#ffffff" />
         
         <ScrollReveal>
           <HowItWorks />
         </ScrollReveal>
 
         {/* What's Inside Component */}
-        <SectionDivider variant="curve" flip topColor="#ffffff" bottomColor="#f5efea" />
+        <SectionDivider variant="angle" flip topColor="#ffffff" bottomColor="#f5efea" />
         
-        <ScrollReveal delay={100}>
+        <ScrollReveal delay={50}>
           <WhatsInside />
         </ScrollReveal>
 
         {/* Social Proof Component */}
-        <SectionDivider variant="wave" topColor="#f5efea" bottomColor="#c7cbc1" />
+        <SectionDivider variant="subtle" topColor="#f5efea" bottomColor="#c7cbc1" />
         
-        <ScrollReveal delay={150}>
+        <ScrollReveal delay={50}>
           <SocialProof />
         </ScrollReveal>
 
         {/* Comparison Chart Section */}
-        <SectionDivider variant="slope" flip topColor="#c7cbc1" bottomColor="#c7cbc1" />
+        <SectionDivider variant="angle" flip topColor="#c7cbc1" bottomColor="#c7cbc1" />
         
-        <ScrollReveal delay={100}>
+        <ScrollReveal delay={50}>
           <section className="py-20" style={{ backgroundColor: '#c7cbc1' }}>
           <div className="container mx-auto px-4">
             <div className="max-w-5xl mx-auto">
@@ -433,9 +433,9 @@ export default function ProductDetail() {
         </ScrollReveal>
 
         {/* Brand Context Section */}
-        <SectionDivider variant="wave" topColor="#c7cbc1" bottomColor="#8b5e46" />
+        <SectionDivider variant="subtle" topColor="#c7cbc1" bottomColor="#8b5e46" />
         
-        <ScrollReveal delay={150}>
+        <ScrollReveal delay={50}>
           <section className="py-32 md:py-40" style={{ backgroundColor: '#8b5e46' }}>
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
@@ -487,9 +487,9 @@ export default function ProductDetail() {
         </ScrollReveal>
 
         {/* FAQ Component */}
-        <SectionDivider variant="curve" flip topColor="#8b5e46" bottomColor="#ffffff" />
+        <SectionDivider variant="angle" flip topColor="#8b5e46" bottomColor="#ffffff" />
         
-        <ScrollReveal delay={100}>
+        <ScrollReveal delay={50}>
           <FAQ />
         </ScrollReveal>
       </main>

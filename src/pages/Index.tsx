@@ -243,51 +243,51 @@ export default function Index() {
           <ProductShowcase />
         </ScrollReveal>
         
-        <SectionDivider variant="wave" topColor="#f5efea" bottomColor="#ffffff" />
+        <SectionDivider variant="subtle" topColor="#f5efea" bottomColor="#ffffff" />
         
-        <ScrollReveal delay={100}>
+        <ScrollReveal delay={50}>
           <ValueProps />
         </ScrollReveal>
         
-        <SectionDivider variant="curve" flip topColor="#ffffff" bottomColor="#f5efea" />
+        <SectionDivider variant="angle" flip topColor="#ffffff" bottomColor="#f5efea" />
         
-        <ScrollReveal delay={150}>
+        <ScrollReveal delay={50}>
           <SocialProof />
         </ScrollReveal>
         
-        <SectionDivider variant="wave" topColor="#f5efea" bottomColor="#ffffff" />
+        <SectionDivider variant="subtle" topColor="#f5efea" bottomColor="#ffffff" />
         
-        <ScrollReveal delay={100}>
+        <ScrollReveal delay={50}>
           <SeasonalDrinks />
         </ScrollReveal>
         
-        <SectionDivider variant="slope" flip topColor="#ffffff" bottomColor="#f5efea" />
+        <SectionDivider variant="angle" flip topColor="#ffffff" bottomColor="#f5efea" />
         
-        <ScrollReveal delay={150}>
+        <ScrollReveal delay={50}>
           <BrandStory />
         </ScrollReveal>
         
-        <SectionDivider variant="wave" topColor="#f5efea" bottomColor="#ffffff" />
+        <SectionDivider variant="subtle" topColor="#f5efea" bottomColor="#ffffff" />
         
-        <ScrollReveal delay={100}>
+        <ScrollReveal delay={50}>
           <HowItWorks />
         </ScrollReveal>
         
-        <SectionDivider variant="curve" flip topColor="#ffffff" bottomColor="#f5efea" />
+        <SectionDivider variant="angle" flip topColor="#ffffff" bottomColor="#f5efea" />
         
-        <ScrollReveal delay={150}>
+        <ScrollReveal delay={50}>
           <WhatsInside />
         </ScrollReveal>
         
-        <SectionDivider variant="wave" topColor="#f5efea" bottomColor="#ffffff" />
+        <SectionDivider variant="subtle" topColor="#f5efea" bottomColor="#ffffff" />
         
-        <ScrollReveal delay={100}>
+        <ScrollReveal delay={50}>
           <FAQ />
         </ScrollReveal>
         
-        <SectionDivider variant="slope" flip topColor="#ffffff" bottomColor="#8b5e46" />
+        <SectionDivider variant="angle" flip topColor="#ffffff" bottomColor="#8b5e46" />
         
-        <ScrollReveal delay={150}>
+        <ScrollReveal delay={50}>
           <Newsletter />
         </ScrollReveal>
       </main>
