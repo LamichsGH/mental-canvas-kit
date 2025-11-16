@@ -14,6 +14,8 @@ import { HowItWorks } from "@/components/HowItWorks";
 import { WhatsInside } from "@/components/WhatsInside";
 import { FAQ } from "@/components/FAQ";
 import { SeasonalDrinks } from "@/components/SeasonalDrinks";
+import { SectionDivider } from "@/components/SectionDivider";
+import { ScrollReveal } from "@/components/ScrollReveal";
 import { Button } from "@/components/ui/button";
 import { Search, Instagram, Facebook, Menu, X } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -236,15 +238,58 @@ export default function Index() {
 
       <main>
         <Hero />
-        <ProductShowcase />
-        <ValueProps />
-        <SocialProof />
-        <SeasonalDrinks />
-        <BrandStory />
+        
+        <ScrollReveal>
+          <ProductShowcase />
+        </ScrollReveal>
+        
+        <SectionDivider variant="wave" topColor="#f5efea" bottomColor="#ffffff" />
+        
+        <ScrollReveal delay={100}>
+          <ValueProps />
+        </ScrollReveal>
+        
+        <SectionDivider variant="curve" flip topColor="#ffffff" bottomColor="#f5efea" />
+        
+        <ScrollReveal delay={150}>
+          <SocialProof />
+        </ScrollReveal>
+        
+        <SectionDivider variant="wave" topColor="#f5efea" bottomColor="#ffffff" />
+        
+        <ScrollReveal delay={100}>
+          <SeasonalDrinks />
+        </ScrollReveal>
+        
+        <SectionDivider variant="slope" flip topColor="#ffffff" bottomColor="#f5efea" />
+        
+        <ScrollReveal delay={150}>
+          <BrandStory />
+        </ScrollReveal>
+        
+        <SectionDivider variant="wave" topColor="#f5efea" bottomColor="#ffffff" />
+        
+        <ScrollReveal delay={100}>
           <HowItWorks />
+        </ScrollReveal>
+        
+        <SectionDivider variant="curve" flip topColor="#ffffff" bottomColor="#f5efea" />
+        
+        <ScrollReveal delay={150}>
           <WhatsInside />
+        </ScrollReveal>
+        
+        <SectionDivider variant="wave" topColor="#f5efea" bottomColor="#ffffff" />
+        
+        <ScrollReveal delay={100}>
           <FAQ />
-        <Newsletter />
+        </ScrollReveal>
+        
+        <SectionDivider variant="slope" flip topColor="#ffffff" bottomColor="#8b5e46" />
+        
+        <ScrollReveal delay={150}>
+          <Newsletter />
+        </ScrollReveal>
       </main>
 
       {/* Footer */}

@@ -34,9 +34,9 @@ export const ProductShowcase = () => {
   };
 
   return (
-    <section id="products" className="py-16" style={{ backgroundColor: '#f5efea' }}>
+    <section id="products" className="py-16 relative" style={{ backgroundColor: '#f5efea' }}>
       <div className="container mx-auto px-4">
-        <div className="max-w-5xl mx-auto bg-background rounded-xl shadow-subtle overflow-hidden border-4 border-primary/20 animate-fade-in" style={{ backgroundColor: '#f5efea' }}>
+        <div className="max-w-5xl mx-auto bg-background rounded-xl shadow-xl overflow-hidden border-4 border-primary/20 transition-all hover:shadow-2xl hover:scale-[1.02] duration-500" style={{ backgroundColor: '#f5efea' }}>
           <div className="grid md:grid-cols-2 gap-0">
             {/* Left Column - Dynamic Text Content */}
             <div className="p-6 md:p-10 flex flex-col justify-center">
@@ -51,7 +51,7 @@ export const ProductShowcase = () => {
             {/* Right Column - Dynamic Image + CTA */}
             <div className="p-6 md:p-10 flex flex-col items-center justify-center" style={{ backgroundColor: '#f5efea' }}>
               {/* Dynamic Product Image */}
-              <div className="w-full aspect-square max-w-xs rounded-xl shadow-lg mb-4 overflow-hidden">
+              <div className="w-full aspect-square max-w-xs rounded-xl shadow-lg mb-4 overflow-hidden transform transition-transform hover:scale-105 duration-300">
                 <img 
                   src={productData.image} 
                   alt={productData.title} 
@@ -62,7 +62,7 @@ export const ProductShowcase = () => {
               {/* Dynamic Shop Now CTA */}
               <Button
                 size="lg"
-                className="w-full max-w-xs rounded-xl text-lg font-semibold"
+                className="w-full max-w-xs rounded-xl text-lg font-semibold transition-all hover:shadow-lg hover:scale-105 duration-300"
                 style={{ backgroundColor: '#8b5e46', color: '#f5efea' }}
                 onClick={() => navigate(`/product/${productData.handle}`)}
               >

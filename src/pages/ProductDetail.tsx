@@ -12,6 +12,8 @@ import { HowItWorks } from "@/components/HowItWorks";
 import { WhatsInside } from "@/components/WhatsInside";
 import { SocialProof } from "@/components/SocialProof";
 import { FAQ } from "@/components/FAQ";
+import { SectionDivider } from "@/components/SectionDivider";
+import { ScrollReveal } from "@/components/ScrollReveal";
 import cocoaLifestyle from "@/assets/cocoa-lifestyle-new.jpg";
 import cocoaPreparation from "@/assets/cocoa-preparation.png";
 import ingredientCocoa from "@/assets/ingredient-cocoa.jpg";
@@ -304,16 +306,31 @@ export default function ProductDetail() {
         </section>
 
         {/* How It Works Component */}
-        <HowItWorks />
+        <SectionDivider variant="wave" topColor="#f5efea" bottomColor="#ffffff" />
+        
+        <ScrollReveal>
+          <HowItWorks />
+        </ScrollReveal>
 
         {/* What's Inside Component */}
-        <WhatsInside />
+        <SectionDivider variant="curve" flip topColor="#ffffff" bottomColor="#f5efea" />
+        
+        <ScrollReveal delay={100}>
+          <WhatsInside />
+        </ScrollReveal>
 
         {/* Social Proof Component */}
-        <SocialProof />
+        <SectionDivider variant="wave" topColor="#f5efea" bottomColor="#c7cbc1" />
+        
+        <ScrollReveal delay={150}>
+          <SocialProof />
+        </ScrollReveal>
 
         {/* Comparison Chart Section */}
-        <section className="py-20" style={{ backgroundColor: '#c7cbc1' }}>
+        <SectionDivider variant="slope" flip topColor="#c7cbc1" bottomColor="#c7cbc1" />
+        
+        <ScrollReveal delay={100}>
+          <section className="py-20" style={{ backgroundColor: '#c7cbc1' }}>
           <div className="container mx-auto px-4">
             <div className="max-w-5xl mx-auto">
               <div className="text-center mb-12">
@@ -413,9 +430,13 @@ export default function ProductDetail() {
             </div>
           </div>
         </section>
+        </ScrollReveal>
 
         {/* Brand Context Section */}
-        <section className="py-32 md:py-40" style={{ backgroundColor: '#8b5e46' }}>
+        <SectionDivider variant="wave" topColor="#c7cbc1" bottomColor="#8b5e46" />
+        
+        <ScrollReveal delay={150}>
+          <section className="py-32 md:py-40" style={{ backgroundColor: '#8b5e46' }}>
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
               <div className="grid md:grid-cols-[55%_45%] gap-10 md:gap-16 items-center">
@@ -463,9 +484,14 @@ export default function ProductDetail() {
             </div>
           </div>
         </section>
+        </ScrollReveal>
 
         {/* FAQ Component */}
-        <FAQ />
+        <SectionDivider variant="curve" flip topColor="#8b5e46" bottomColor="#ffffff" />
+        
+        <ScrollReveal delay={100}>
+          <FAQ />
+        </ScrollReveal>
       </main>
 
       {/* Footer */}
